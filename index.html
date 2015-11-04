@@ -34,29 +34,47 @@
 		
 		<!-- Results -->
 		<div class="container-fixed">
-
-			<table class="table table-striped" id="topTracks" ng-show="toptracks.length>0">
-				<thead>
-					<tr>
-						<th>Song</th>
-						<th>Album</th>
-						<th>Sample Song</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="item in toptracks">
-						<td>{{item.name}}</td>
-						<td>{{item.album.name}}</td>
-						<td>Placeholder for CSS animation</td>
-					</tr>
-				</tbody>
-			</table>
+			<uib-tabset justified ng-show="toptracks.length>0">
+				<uib-tab heading="Top Tracks" active="false">
+					<table class="table table-striped" id="topTracks">
+						<thead>
+							<tr>
+								<th>Song</th>
+								<th>Album</th>
+								<th>Sample Song</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in toptracks">
+								<td>{{item.name}}</td>
+								<td>{{item.album.name}}</td>
+								<td>Placeholder for CSS animation</td>
+							</tr>
+						</tbody>
+					</table>
+				</uib-tab>
+				<uib-tab heading="Albums" active>
+				<table class="table table-striped" id="album">
+					<thead>
+						<tr>
+							<th>Album Name</th>			
+						</tr>
+					</thead>					
+					<tbody>
+						<tr ng-repeat="item in artistAlubm">
+							<td>{{item.items.name}}</td>
+							<td>{{item.items.images[2].url}}</td>
+						</tr>
+					</tbody>
+					</table>
+				</uib-tab>
+			</uib-tabset>
 		</div>
 		
 		<div class="container-fluid">
 			<div class="row">
-				<div class= "col-sm-12" ng-repeat="item in related">
-					<img ng-src="{{item.images[2].url}}" title="{{item.name}}" id="relatedImg">
+				<div class= "col-xs-6 col-md-4" ng-repeat="item in related">
+					<div class="spotifyResponsive" style="background-image: url({{item.images[0].url}})"></div>
 					<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">{{item.name}}</button>
 					<hr>
 					<div uib-collapse="isCollapsed">
@@ -64,17 +82,18 @@
 							<table class = "table table-striped">
 								<thead>
 									<tr>
-										<th>Data</th>
-										<th>Data</th>
+										<th>Artist Data</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td>Something</td>
-										<td>Something</td>
+										<td id="relatedCol">Popularity</td>
+										<td>{{item.popularity}}</td>
+										<div></div>
 									</tr>
 									<tr>	
-									<td>Something</td>
+										<td id="relatedCol">Search for Similar Artists</td>
+										<td><button type="button" class="btn btn-default"ng-click="getArtistID(item.name)">Link to Search</button></td>
 									</tr>
 								</tbody>
 							</table>

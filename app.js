@@ -6,23 +6,34 @@ var myApp = angular.module('myApp', ['ui.bootstrap']);
 var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   $scope.audioObject = {}
   
-  $scope.getArtistID = function() {
+  $scope.getArtistID = function(queryArtist) {
+    
+  if(queryArtist!=null){
+    $scope.artist=queryArtist
+  }
     $http.get(baseUrl + $scope.artist).success(function(response){
       dataArtist = $scope.artists = response.artists.items
-      console.log($scope.artist + ' Spotify ID: ' + dataArtist[0].id);
+      baseUrl= 'https://api.spotify.com/v1/artists/'+dataArtist[0].id
       getRelated();
       getSongs();
+      getAlbums();
     })
   }
   var getRelated =function(){
-    $http.get('https://api.spotify.com/v1/artists/'+dataArtist[0].id+'/related-artists').success(function(response){
+    $http.get(baseUrl+'/related-artists').success(function(response){
       $scope.related = response.artists
       $scope.isCollapsed = true;
     })
   }
   var getSongs = function (){
-    $http.get('https://api.spotify.com/v1/artists/'+dataArtist[0].id+'/top-tracks?country=US').success(function(response){
+    $http.get(baseUrl+'/top-tracks?country=US').success(function(response){
       $scope.toptracks = response.tracks
+    })
+  }
+
+  var getAlbums = function (){
+    $http.get(baseUrl+'/albums').success(function(response){
+      $scope.artistAlubm = response.artists
     })
   }
   // $scope.play = function(song) {
