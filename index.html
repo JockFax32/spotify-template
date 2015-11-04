@@ -2,8 +2,8 @@
 <html>
 <head>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Spotify Template</title>
 	
 	<!-- Include libraries -->
@@ -11,6 +11,7 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.js"></script>
 	
 	<!-- Read scripts -->
 	<script src="app.js"></script>
@@ -24,21 +25,77 @@
 		<form class="container" name="songForm">
 			<div class="form-group">
 				<label>Spotify search:</label>
-				<input name="search" placeholder="Enter your search.." ng-model="track" class="form-control"></input>
+				<input name="search" placeholder="Enter your search.." ng-model="artist" class="form-control"></input>
 			</div>
 			<div class="form-group">
-				<button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getSongs()" type="submit">Submit</button>
+				<button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getArtistID()" type="submit">Submit</button>
 			</div>
 		</form>
 		
 		<!-- Results -->
 		<div class="container-fixed">
-			<p ng-show="tracks.length>0" class="help-block">Click to sample</p>
-			<ul>
-				<li ng-repeat="track in tracks" class="" ng-click="play(track.preview_url)" title="{{track.name}}">{{track.name + ', by ' + track.artists[0].name}}</li>
-			</ul>
+
+			<table class="table table-striped" id="topTracks" ng-show="toptracks.length>0">
+				<thead>
+					<tr>
+						<th>Song</th>
+						<th>Album</th>
+						<th>Sample Song</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in toptracks">
+						<td>{{item.name}}</td>
+						<td>{{item.album.name}}</td>
+						<td>Placeholder for CSS animation</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-	</div>
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class= "col-sm-12" ng-repeat="item in related">
+					<img ng-src="{{item.images[2].url}}" title="{{item.name}}" id="relatedImg">
+					<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">{{item.name}}</button>
+					<hr>
+					<div uib-collapse="isCollapsed">
+						<div class="well well-sm">
+							<table class = "table table-striped">
+								<thead>
+									<tr>
+										<th>Data</th>
+										<th>Data</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Something</td>
+										<td>Something</td>
+									</tr>
+									<tr>	
+									<td>Something</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>				
+				</div>
+			</div>
+		</div>		
+<!-- http://stackoverflow.com/questions/22618414/add-bootstrap-rows-during-ng-repeat
+-->
+
+
+
+
+<!-- 			<p ng-show="related.length>0" class="help-block">Click to sample</p>
+			<ul>
+				<li ng-repeat="item in related" class="" ng-click="play(track.preview_url)" >
+					<img ng-src="{{item.images[2].url}}" title="{{item.name}}"></li>
+				</ul> -->
+			</div>
+		</div>
 	</div>
 </body>
 </html>
