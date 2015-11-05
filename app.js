@@ -60,14 +60,3 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
 $('body').tooltip({
   selector: '[title]'
 });
-
-
-
-/* Create an Artist Suggestion list. When the search returns there should
-be a list (3 cols wide) that shows the albumn art work of the related artist. In addition.
-the searched artists top 5 songs will be listed with play and pause buttons next to each.
-Underneath the albumn art work will be the name of the band in a button. the 
-button will work as  a Bootsrapt collapsee; and when clicked there will be 
-more information about the band. Hopefully, there will be a link that re-initalizes
-the search with that band. 
-*/
