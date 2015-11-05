@@ -53,7 +53,8 @@
 						</tbody>
 					</table>
 				</uib-tab>
-				<uib-tab heading="Albums" active>
+				</uib-tabset>
+				
 				<table class="table table-striped" id="album">
 					<thead>
 						<tr>
@@ -62,13 +63,11 @@
 					</thead>					
 					<tbody>
 						<tr ng-repeat="item in artistAlubm">
-							<td>{{item.items.name}}</td>
-							<td>{{item.items.images[2].url}}</td>
+							<td>{{}}</td>
+							<td></td>
 						</tr>
 					</tbody>
 					</table>
-				</uib-tab>
-			</uib-tabset>
 		</div>
 		
 		<div class="container-fluid">
@@ -82,7 +81,7 @@
 							<table class = "table table-striped">
 								<thead>
 									<tr>
-										<th>Artist Data</th>
+										<th>Artist Info</th>
 									</tr>
 								</thead>
 								<tbody>
