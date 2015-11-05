@@ -2,7 +2,8 @@ body {
   padding:10px;
 /*  background-image: url('img/concert-background.jpg');
   background-repeat: no-repeat;*/
- 
+/*  https://css-tricks.com/perfect-full-page-background-image/
+*/ 
 }
 
 .spotifyResponsive{
@@ -10,7 +11,7 @@ body {
     height: 640px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: 50%; 
+    background-position: 50%;
 }
 #relatedCol{
 /*    font-weight: 300px;
