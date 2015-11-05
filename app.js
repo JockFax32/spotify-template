@@ -37,7 +37,7 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
 
   var getAlbums = function (){
     $http.get(getURL+dataArtist[0].id+'/albums?market=US&album_type=album').success(function(response){
-       $scope.artistAlubm = response;
+       $scope.artistAlubm = response['items'];
       console.log("Artist Album: "+ $scope.artistAlubm);
     })
   }
