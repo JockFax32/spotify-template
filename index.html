@@ -55,7 +55,7 @@
 			</table>
 		</uib-tab>
 
-		<uib-tab heading="Artist Albums" active="false">
+		<uib-tab heading="Artist Albums" active="false" class="ng-click:{getRelated()};">
 		<table class="table table-striped" id="album">
 			<thead>
 				<tr>
@@ -65,7 +65,7 @@
 			<tbody>
 				<tr ng-repeat="ele in artistAlubm">
 					<td>{{ele.name}}</td>
-					<td></td>
+					<td><img ng-src="{{ele.images[2].url}}"/></td>
 				</tr>
 			</tbody>
 		</table>
@@ -75,36 +75,51 @@
 	<div class="container">
 		<div class="row">
 			<div class= "col-xs-6 col-md-4" ng-repeat="ele in related">
-				<div class="spotifyResponsive" style="background-image: url({{ele.images[0].url}})"> <div class="spotifyResponsive" ng-if="ele.images[0].url ==null" style="background-image:url('img/Spotify-icon.png')"> 
-				</div></div>
-				<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">{{ele.name}}</button>
-				<hr>
-				<div uib-collapse="isCollapsed">
-					<div class="well well-sm">
-						<table class = "table table-striped">
-							<thead>
-								<tr>
-									<th>Artist Info</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td id="relatedCol">Popularity</td>
-									<td>{{ele.popularity}}</td>
-									<div></div>
-								</tr>
-								<tr>	
-									<td id="relatedCol">Search for Similar Artists</td>
-									<td><button type="button" class="btn btn-default"ng-click="getArtistID(ele.name)">Link to Search</button></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>				
+				<div class="spotifyResponsive" style="background-image: url({{ele.images[0].url}})"> 
+					<div class="spotifyResponsive" ng-if="ele.images[0].url ==null" style="background-image:url('img/Spotify-icon.png')"> 
+					</div></div>
+					<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">{{ele.name}}</button>
+					<hr>
+					<div uib-collapse="isCollapsed">
+						<div class="well well-sm">
+							<table class = "table table-striped">
+								<thead>
+									<tr>
+										<th>Artist Info</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td id="relatedCol">Genres</td>
+										<td>Link to Echo to get this Info</td>
+									</tr>
+									<tr>
+										<td id="relatedCol">Popularity</td>
+										<td>{{ele.popularity}}</td>
+										<div></div>
+									</tr>
+									<tr>	
+										<td id="relatedCol">Search for Similar Artists</td>
+										<td><button type="button" class="btn btn-default"ng-click="getArtistID(ele.name)">Link to Search</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>				
+				</div>
 			</div>
 		</div>
-	</div>
-</uib-tab>
+	</uib-tab>
+	<uib-tab heading="Summary" active="false">
+	<p>Artist Summary</p>
+
+
+
+
+
+
+	</uib-tab>
+
 </uib-tabset>		
 </div>
 </div>
