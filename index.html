@@ -75,9 +75,8 @@
 	<div class="container">
 		<div class="row">
 			<div class= "col-xs-6 col-md-4" ng-repeat="ele in related">
-				<div class="spotifyResponsive"> 
-				<span ng-if="ele.images[0].url ==null"><span style="background-image:url('img/concert-background.jpg')">Null Value</span></span>
-				</div>
+				<div class="spotifyResponsive" style="background-image: url({{ele.images[0].url}})"> <div class="spotifyResponsive" ng-if="ele.images[0].url ==null" style="background-image:url('img/Spotify-icon.png')"> 
+				</div></div>
 				<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">{{ele.name}}</button>
 				<hr>
 				<div uib-collapse="isCollapsed">
