@@ -1,7 +1,7 @@
 var dataArtist;
 var baseUrl = 'https://api.spotify.com/v1/search?type=artist&query='
 var getUrl = 'https://api.spotify.com/v1/artists/'
-var echoUrl = ''
+var echoUrl = 'http://developer.echonest.com/api/v4/artist/biographies?api_key=ADKYSLYABB1EDPIEE'
 var myApp = angular.module('myApp', ['ui.bootstrap']);
 var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   $scope.audioObject = {}
@@ -13,11 +13,10 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   }
     $http.get(baseUrl + $scope.artist).success(function(response){
       dataArtist = $scope.artists = response.artists.items
-      console.log("baseUrl:  " + baseUrl);
-      console.log ("artist ID: " + dataArtist[0].id)
-      // getRelated();
+      getRelated();
       getSongs();
       getAlbums();
+      getBio();
     })
   }
   var getRelated =function(){
@@ -29,7 +28,6 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   var getSongs = function (){
     $http.get(getUrl+dataArtist[0].id+ '/top-tracks?country=US').success(function(response){
       $scope.toptracks = response.tracks
-      console.log("Top Tracks: " + $scope.toptracks)
 
     })
   }
@@ -37,6 +35,11 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   var getAlbums = function (){
     $http.get(getUrl+dataArtist[0].id+'/albums?market=US&album_type=album').success(function(response){
        $scope.artistAlubm = response['items'];
+    })
+  }
+  var getBio = function (){
+    $http.get(echoUrl+'&id=spotify:artist:'+dataArtist[0].id+'&format=json&results=1&start=0&license=cc-by-sa').success(function(response){
+      $scope.artistBio= response.response.biographies[0].text;
     })
   }
   // $scope.play = function(song) {

@@ -36,7 +36,7 @@
 		<uib-tabset justified ng-show="toptracks.length>0">
 		<div class="container-fixed">
 			<uib-tabset justified ng-show="toptracks.length>0">
-			<uib-tab heading="Top Tracks" active="false">
+			<uib-tab heading="Top Tracks" active="false" >
 			<table class="table table-striped" id="topTracks">
 				<thead>
 					<tr>
@@ -55,7 +55,7 @@
 			</table>
 		</uib-tab>
 
-		<uib-tab heading="Artist Albums" active="false" class="ng-click:{getRelated()};">
+		<uib-tab heading="Artist Albums" active="false">
 		<table class="table table-striped" id="album">
 			<thead>
 				<tr>
@@ -111,7 +111,11 @@
 		</div>
 	</uib-tab>
 	<uib-tab heading="Summary" active="false">
-	<p>Artist Summary</p>
+	<div class="well well-sm">Possible Carrosel and More info</div>
+	<ol class="breadcrumb">
+	<li>{{artist}}</li>
+	<li>Previous artist</li>
+	<li ng-click="getArtistID()">Spoon</li>
 
 
 
