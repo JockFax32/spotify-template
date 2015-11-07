@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Spotify Template</title>
+	<title>Spotify Atrist Finder</title>
 	
 	<!-- Include libraries -->
 	<script src="https://code.jquery.com/jquery.min.js"></script>
@@ -24,8 +24,8 @@
 		<!-- Form -->
 		<form class="container" name="songForm">
 			<div class="form-group">
-				<label>Spotify search:</label>
-				<input name="search" placeholder="Enter your search.." ng-model="artist" class="form-control"></input>
+				<label></label>
+				<input name="search" placeholder="Search your favorite artist to find your next favorite..." ng-model="artist" class="form-control"></input>
 			</div>
 			<div class="form-group">
 				<button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getArtistID()" type="submit">Submit</button>
@@ -49,13 +49,13 @@
 					<tr ng-repeat="ele in toptracks">
 						<td>{{ele.name}}</td>
 						<td>{{ele.album.name}}</td>
-						<td>Placeholder for CSS animation</td>
+						<td><span ng-click="play(ele.preview_url)" class="glyphicon glyphicon-play" id="pointer"></span></td>
 					</tr>
 				</tbody>
 			</table>
 		</uib-tab>
 
-		<uib-tab heading="Artist Albums" active="false">
+		<uib-tab heading="Artist Albums" active="false" ng-click="getAlbums()">
 		<table class="table table-striped" id="album">
 			<thead>
 				<tr>
@@ -76,7 +76,7 @@
 		<div class="row">
 			<div class= "col-xs-6 col-md-4" ng-repeat="ele in related">
 				<div class="spotifyResponsive" style="background-image: url({{ele.images[0].url}})"> 
-					<div class="spotifyResponsive" ng-if="ele.images[0].url ==null" style="background-image:url('img/Spotify-icon.png')"> 
+					<div class="spotifyResponsive" id="related" ng-if="ele.images[0].url ==null" style="background-image:url('img/Spotify-icon.png')"> 
 					</div></div>
 					<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">{{ele.name}}</button>
 					<hr>
@@ -108,25 +108,17 @@
 					</div>				
 				</div>
 			</div>
-		</div>
+	</div>
 	</uib-tab>
+	
 	<uib-tab heading="Summary" active="false">
-	<div class="well well-sm">Possible Carrosel and More info</div>
-	<ol class="breadcrumb">
-	<li>{{artist}}</li>
-	<li>Previous artist</li>
-	<li ng-click="getArtistID()">Spoon</li>
-
-
-
-
-
-
+	<div class="well well-sm">Possible Carrosel if there isand More info</div>
 	</uib-tab>
+</uib-tabset>
+</div>
+<ol class="breadcrumb footer">
+	<li ng-repeat= "ele in list track by $index" ng-click="getArtistID(ele)" id ="pointer">{{ele}}</li>
+</ol>
 
-</uib-tabset>		
-</div>
-</div>
-</div>
 </body>
 </html>

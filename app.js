@@ -1,7 +1,10 @@
 var dataArtist;
+var artistList = [];
 var baseUrl = 'https://api.spotify.com/v1/search?type=artist&query='
 var getUrl = 'https://api.spotify.com/v1/artists/'
 var echoUrl = 'http://developer.echonest.com/api/v4/artist/biographies?api_key=ADKYSLYABB1EDPIEE'
+
+
 var myApp = angular.module('myApp', ['ui.bootstrap']);
 var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   $scope.audioObject = {}
@@ -13,10 +16,14 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   }
     $http.get(baseUrl + $scope.artist).success(function(response){
       dataArtist = $scope.artists = response.artists.items
+      artistList.push($scope.artist);
+      $scope.list=artistList;
+      console.log($scope.list);
+
+      //Use ng-click directives to call functions
       getRelated();
       getSongs();
       getAlbums();
-      getBio();
     })
   }
   var getRelated =function(){
@@ -37,24 +44,19 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
        $scope.artistAlubm = response['items'];
     })
   }
-  var getBio = function (){
-    $http.get(echoUrl+'&id=spotify:artist:'+dataArtist[0].id+'&format=json&results=1&start=0&license=cc-by-sa').success(function(response){
-      $scope.artistBio= response.response.biographies[0].text;
-    })
+  $scope.play = function(song) {
+    if($scope.currentSong == song) {
+      $scope.audioObject.pause
+      $scope.currentSong = false
+      return
+    }
+    else {
+      if($scope.audioObject.pause != undefined) $scope.audioObject.pause()
+        $scope.audioObject = new Audio(song);
+      $scope.audioObject.play()  
+      $scope.currentSong = song
+    }
   }
-  // $scope.play = function(song) {
-  //   if($scope.currentSong == song) {
-  //     $scope.audioObject.pause()
-  //     $scope.currentSong = false
-  //     return
-  //   }
-  //   else {
-  //     if($scope.audioObject.pause != undefined) $scope.audioObject.pause()
-  //       $scope.audioObject = new Audio(song);
-  //     $scope.audioObject.play()  
-  //     $scope.currentSong = song
-  //   }
-  // }
 })
 
 // Add tool tips to anything with a title property
@@ -69,7 +71,8 @@ API Key: ADKYSLYABB1EDPIEE
 
 Need an error message for unfound artists
 
-Include a footer that has a breadcrumb
+Include a footer that has a breadcrumb. Store previous searches in an array and then display the text
+of the artist
 
 
 */
