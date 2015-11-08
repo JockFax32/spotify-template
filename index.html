@@ -36,7 +36,7 @@
 		<div class="container-fixed">
 			<uib-tabset justified="true" ng-show="toptracks.length>0" id="tabset">
 				<uib-tab heading="Top Tracks" active="false" >
-					<table class="table table-striped" id="topTracks">
+					<table class="table table-striped" id="topTracks" id="heading">
 						<thead>
 							<tr>
 								<th>Song</th>
@@ -54,7 +54,7 @@
 					</table>
 				</uib-tab>
 
-				<uib-tab heading="Artist Albums" active="false" ng-click="getAlbums()">
+				<uib-tab heading="Artist Albums" active="false" ng-click="getAlbums()" id="heading">
 					<table class="table table-striped" id="album">
 						<thead>
 							<tr>
@@ -70,14 +70,14 @@
 					</table>
 				</uib-tab>
 
-				<uib-tab heading="Related Artists" active="false">	
+				<uib-tab heading="Related Artists" active="false" id="heading">	
 					<div class="container">
 						<div class="row">
 							<div class= "col-xs-6 col-md-4" ng-repeat="ele in related">
 								<div class="spotifyResponsive" style="background-image: url({{ele.images[0].url}})"> 
 									<div class="spotifyResponsive" ng-if="ele.images[0].url ==null" style="background-image:url('img/Spotify-icon.png')"> 
 								</div></div>
-								<span ng-click="isCollapsed = !isCollapsed" id="pointer">{{ele.name}}</span>
+								<div ng-click="isCollapsed = !isCollapsed" id="pointer">{{ele.name}}</div>
 								<hr>
 								<div uib-collapse="isCollapsed">
 									<div class="well well-sm">
@@ -109,13 +109,13 @@
 						</div>
 					</div>
 				</uib-tab>
-				<uib-tab heading="Summary" active="false">
+				<uib-tab heading="Summary" active="false" id="heading">
 					<div class="well well-sm">Possible Carrosel if there isand More info</div>
 				</uib-tab>
 			</uib-tabset>
 		</div>
-		<ol class="breadcrumb footer" ng-show="list.length>0">
-			<li ng-repeat= "ele in list track by $index" ng-click="getArtistID(ele)" id ="pointer">{{ele}}</li>
-		</ol>
+			<ol class="breadcrumb footer" ng-show="list.length>0" id="footer">
+				<li ng-repeat= "ele in list track by $index" ng-click="getArtistID(ele)" id ="pointer">{{ele}}</li>
+			</ol>
 	</body>
 </html>
