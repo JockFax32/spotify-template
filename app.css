@@ -5,21 +5,22 @@ body {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
-  
- 
-
-/*  https://css-tricks.com/perfect-full-page-background-image/
-*/ 
+  background-size: cover; 
 }
-#related{
-  background-color: yellow;/*rgba(245, 245, 245, 0.4);*/
+#tabset{
+  background-color: rgba(245, 245, 245, 0.4);
+
+}
+/*.tab-content{
+  background-color: rgba(245, 245, 245, 0.4);
   width:80%;
-  vertical-align: center;
+  
 }
-
+*/
 #pointer{
   cursor: pointer;
+  text-align: right;
+  font-variant: small-caps;
 }
 
 .spotifyResponsive{
@@ -29,19 +30,17 @@ body {
     background-repeat: no-repeat;
     background-position: 50%;
     border-radius: 100%;
-    
-    
-
 }
 #relatedCol{
 /*    font-weight: 300px;
 font-variant: small-caps; */
 }
-  
+
 .footer{
     position:fixed;
     bottom: 0;
     padding-right: 15px;
+    overflow: hidden;
     background-color: rgba(245, 245, 245, 0.4);
-
 }
+/*<button type="button" class="btn btn-default"*/
