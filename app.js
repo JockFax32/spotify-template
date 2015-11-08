@@ -18,6 +18,8 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
       dataArtist = $scope.artists = response.artists.items
       artistList.push($scope.artist);
       $scope.list=artistList;
+      // User needs to visual see that the page has updated after selecting
+      // an artist from within the suggestions
       getSongs();
       getRelated();
       getAlbums();
@@ -44,7 +46,7 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   }
   $scope.getAlbumTracks = function(albumId){
     $http.get('https://api.spotify.com/v1/albums/'+ albumId +'/tracks').success(function(response){
-      $scope.albumtrack = response['itmes'];
+      $scope.albtracks = response['itmes'];
       $scope.isCollapsed = true;
     })
   }
@@ -77,6 +79,5 @@ Need an error message for unfound artists
 
 Include a footer that has a breadcrumb. Store previous searches in an array and then display the text
 of the artist
-
 
 */
