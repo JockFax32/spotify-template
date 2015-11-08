@@ -18,11 +18,8 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
       dataArtist = $scope.artists = response.artists.items
       artistList.push($scope.artist);
       $scope.list=artistList;
-      console.log($scope.list);
-
-      //Use ng-click directives to call functions
-      getRelated();
       getSongs();
+      getRelated();
       getAlbums();
     })
   }
@@ -32,7 +29,7 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
       $scope.isCollapsed = true;
     })
   }
-  var getSongs = function (){
+   var getSongs = function (){
     $http.get(getUrl+dataArtist[0].id+ '/top-tracks?country=US').success(function(response){
       $scope.toptracks = response.tracks
 
@@ -42,6 +39,13 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   var getAlbums = function (){
     $http.get(getUrl+dataArtist[0].id+'/albums?market=US&album_type=album').success(function(response){
        $scope.artistAlubm = response['items'];
+
+    })
+  }
+  $scope.getAlbumTracks = function(albumId){
+    $http.get('https://api.spotify.com/v1/albums/'+ albumId +'/tracks').success(function(response){
+      $scope.albumtrack = response['itmes'];
+      $scope.isCollapsed = true;
     })
   }
   $scope.play = function(song) {
