@@ -10,16 +10,15 @@ body {
 hr{
   border: none;
 }
+a{
+  color: #251F2E;;
+  font-weight: 700px;
+}
 #tabset{
   background-color: rgba(245, 245, 245, 0.4);
   letter-spacing: 2px;
   color: #0F1E38;
   font-weight: 600;
-}
-
-#heading{
-  font-weight:100;
-  color: #251F2E;
 }
 
 /*.tab-content{
