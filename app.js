@@ -5,7 +5,7 @@ var getUrl = 'https://api.spotify.com/v1/artists/'
 var echoUrl = 'http://developer.echonest.com/api/v4/artist/profile?api_key=ADKYSLYABB1EDPIEE&id=spotify:artist:'
 
 
-
+// Create App and Controller
 var myApp = angular.module('myApp', ['ui.bootstrap']);
 var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   $scope.audioObject = {}
@@ -29,7 +29,7 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
     })
   }
   var getRelated =function(){
-    $http.get(getUrl+ dataArtist[0].id +'/related-artists').success(function(response){
+    $http.get(getUrl+ dataArtist[0].id +'/related-artists').success(function(response){ //for simplicty, only the first aritst in the array is queued on
       $scope.related = response.artists
       $scope.isCollapsed = true;
     })
@@ -51,6 +51,7 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
       $scope.isCollapsed = true;
     })
   }
+  //Access the Echo Nest API
  $scope.getEcho = function (id){
     $http.get(echoUrl+id+'&bucket=genre&format=json').success(function(response){
       $scope.genrelists= response.response.artist.genres[0]; //show only primary genre
