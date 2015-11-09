@@ -47,7 +47,7 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   }
   $scope.getAlbumTracks = function(albumId){
     $http.get('https://api.spotify.com/v1/albums/'+ albumId +'/tracks').success(function(response){
-      $scope.albtracks = response['itmes'];
+      $scope.albtracks = response.items;
       $scope.isCollapsed = true;
     })
   }
@@ -75,15 +75,3 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
 $('body').tooltip({
   selector: '[title]'
 });
-
-/*
-https://developer.spotify.com/spotify-echo-nest-api/
-Additional JSON that has more info 
-API Key: ADKYSLYABB1EDPIEE 
-
-Need an error message for unfound artists
-
-Include a footer that has a breadcrumb. Store previous searches in an array and then display the text
-of the artist
-
-*/

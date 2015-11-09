@@ -25,7 +25,8 @@
 		<form class="container" name="songForm">
 			<div class="form-group">
 				<label></label>
-				<input name="search" placeholder="Search for your favorite artist to find your next favorite..." ng-model="artist" class="form-control"></input>
+				<input name="search" placeholder="Search for your favorite artist to find your next favorite..." ng-model="artist" class="form-control" name="artist" ng-minlength="2" required></input>
+				<p ng-show="songForm.artist.$error.minlength" class ="help-block">Artist Search is too short</p>
 			</div>
 			<div class="form-group">
 				<button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getArtistID()" type="submit">Submit</button>
@@ -75,9 +76,9 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr >
-													<td>{{albtracks}}</td>
-													<td><span ng-click="play(ele.preview_url)" class="glyphicon glyphicon-play" id="pointer"></span></td>
+												<tr ng-repeat = "data in albtracks">
+													<td>{{data.name}}</td>
+													<td><span ng-click="play(data.preview_url)" class="glyphicon glyphicon-play" id="pointer"></span></td>
 												</tr>
 											</tbody>
 										</table>
