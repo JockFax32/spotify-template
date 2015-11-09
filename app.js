@@ -26,8 +26,6 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
       getSongs();
       getRelated();
       getAlbums();
-      getEcho('0LbLWjaweRbO4FDKYlbfNt');
-
     })
   }
   var getRelated =function(){
@@ -53,9 +51,9 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
       $scope.isCollapsed = true;
     })
   }
- var getEcho = function (id){
+ $scope.getEcho = function (id){
     $http.get(echoUrl+id+'&bucket=genre&format=json').success(function(response){
-      $scope.genrelists= response.response.artist.genres
+      $scope.genrelists= response.response.artist.genres[0]; //show only primary genre
     })
   }
   $scope.play = function(song) {

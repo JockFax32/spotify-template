@@ -75,8 +75,8 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr ng-repeat ="data in albtracks">
-													<td>{{data.name}}</td>
+												<tr >
+													<td>{{albtracks}}</td>
 													<td><span ng-click="play(ele.preview_url)" class="glyphicon glyphicon-play" id="pointer"></span></td>
 												</tr>
 											</tbody>
@@ -96,7 +96,7 @@
 								<div class="spotifyResponsive" style="background-image: url({{ele.images[0].url}})"> 
 									<div class="spotifyResponsive" ng-if="ele.images[0].url ==null" style="background-image:url('img/Spotify-icon.png')"> 
 								</div></div>
-								<div ng-click="isCollapsed = !isCollapsed;" id="pointer" class="related">{{ele.name}}</div>
+								<div ng-click="isCollapsed = !isCollapsed; getEcho(ele.id)" id="pointer" class="related">{{ele.name}}</div>
 								<hr>
 								<div uib-collapse="isCollapsed">
 									<div class="well well-sm">
@@ -108,8 +108,8 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td>Genres</td>
-													<td ng-repeat"genre in genrelists">{{genre}}</td>
+													<th>Genre</th>
+													<td >{{genrelists.name}}</td>
 												</tr>
 												<tr>
 													<td>Popularity</td>
@@ -118,7 +118,7 @@
 												</tr>
 												<tr>	
 													<td>Search for Similar Artists</td>
-													<td><button type="button" class="btn btn-default"ng-click="getArtistID(ele.name)">Click to Search</button></td>
+													<td ng-click="getArtistID(ele.name)" id="pointer">Bring the Noise</td>
 												</tr>
 											</tbody>
 										</table>
